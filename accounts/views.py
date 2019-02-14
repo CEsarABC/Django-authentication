@@ -63,5 +63,7 @@ def registration(request):
     
 def user_profile(request):
     """ user profile page """
+    ''' this request brings the whole user even if we are just asking for the mail
+    thats why when we send user as profile, in the html takes just the name'''
     user = User.objects.get(email=request.user.email)
     return render(request, 'profile.html', {"profile":user})
