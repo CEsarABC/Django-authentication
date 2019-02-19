@@ -1,12 +1,18 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}" type="text/css" />
         <title>{% block page_title %}{% endblock %}</title>
     </head>
     <body>
-        <h1>{% block page_heading %}{% endblock %}</h1>
-        <nav>
-            <ul>
+        <div class='container'>
+        <nav class='navbar navbar-default'>
+            <ul class='nav nav-navbar-nav'>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'profile' %}">Profile</a></li>
                     <li><a href="{% url 'logout' %}">LogOut</a></li>
@@ -17,6 +23,10 @@
                 
             </ul>
         </nav>
+        
+        <div>
+            <h1>{% block page_heading %}{% endblock %}</h1>
+        </div>
         <hr>
         {% if messages %}
         <div>
@@ -26,5 +36,6 @@
         </div>
         {% endif %}
         {% block content %}{% endblock %}
+        </div>
     </body>
 </html>
